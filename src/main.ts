@@ -28,7 +28,8 @@ export async function createRelease(): Promise<void> {
       prerelease: false,
       generate_release_notes: false
     })
-  } catch (error: any) {
-    core.setFailed(error.message)
+  } catch (error) {
+    const { message } = error as Error
+    core.setFailed(message)
   }
 }

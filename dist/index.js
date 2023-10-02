@@ -9689,7 +9689,8 @@ async function createRelease() {
         });
     }
     catch (error) {
-        core.setFailed(error.message);
+        const { message } = error;
+        core.setFailed(message);
     }
 }
 exports.createRelease = createRelease;
