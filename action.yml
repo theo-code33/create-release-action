@@ -1,19 +1,16 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Create Release'
+description: 'Create a release on GitHub'
+author: 'Théo Gillet - theocode-33'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  version:
+    description: 'The version of the release'
     required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
+  token:
+    description: 'The GitHub token'
+    required: true
 
 runs:
-  using: node20
+  using: node18
   main: dist/index.js
