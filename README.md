@@ -16,7 +16,7 @@ if you want to create a release allow github to create a tag for you in
 - uses: actions/checkout@v3
 - uses: actions/setup-node@v2
   with:
-    node-version: '18'
+    node-version: '16'
 - uses: actions/create-release@v1
   with:
     version: 'The version to release'
