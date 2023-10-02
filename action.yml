@@ -1,7 +1,7 @@
 name: 'New Release action'
 description: 'Create a release on GitHub'
 author: 'Théo Gillet - theocode-33'
-
+icon: "bookmark"
 # Define your inputs here.
 inputs:
   version:
