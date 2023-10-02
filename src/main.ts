@@ -1,26 +1,35 @@
 import * as core from '@actions/core'
-import { wait } from './wait'
+import * as github from '@actions/github'
 
 /**
- * The main function for the action.
+ * The createRelease function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
-export async function run(): Promise<void> {
+export async function createRelease(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
+    const version = core.getInput('version')
+    const token = core.getInput('token')
 
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    const { context } = github
 
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    const octokit = github.getOctokit(token)
+    const { repository } = context.payload
 
-    // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    if (!repository) return core.setFailed('No repository found.')
+
+    await octokit.rest.repos.createRelease({
+      owner: repository.owner.login,
+      repo: repository.full_name?.split('/')[1] || repository.name,
+      tag_name: version,
+      tag_commitish: context.sha,
+      name: version,
+      body: `New release ${version} published to NPM.`,
+      draft: false,
+      prerelease: false,
+      generate_release_notes: false
+    })
   } catch (error) {
-    // Fail the workflow run if an error occurs
-    if (error instanceof Error) core.setFailed(error.message)
+    const { message } = error as Error
+    core.setFailed(message)
   }
 }
