@@ -1,4 +1,4 @@
-name: 'Create Release'
+name: 'Create New Release'
 description: 'Create a release on GitHub'
 author: 'Théo Gillet - theocode-33'
 
