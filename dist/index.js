@@ -9669,8 +9669,12 @@ const github = __importStar(__nccwpck_require__(5438));
  */
 async function createRelease() {
     try {
-        const version = core.getInput('version');
-        const token = core.getInput('token');
+        const version = core.getInput('version', {
+            required: true
+        });
+        const token = core.getInput('token', {
+            required: true
+        });
         const { context } = github;
         const octokit = github.getOctokit(token);
         const { repository } = context.payload;
