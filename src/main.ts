@@ -7,8 +7,12 @@ import * as github from '@actions/github'
  */
 export async function createRelease(): Promise<void> {
   try {
-    const version = core.getInput('version')
-    const token = core.getInput('token')
+    const version = core.getInput('version', {
+      required: true
+    })
+    const token = core.getInput('token', {
+      required: true
+    })
 
     const { context } = github
 

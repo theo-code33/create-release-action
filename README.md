@@ -17,7 +17,7 @@ if you want to create a release allow github to create a tag for you in
 - uses: actions/setup-node@v2
   with:
     node-version: '16'
-- uses: actions/create-release@v1
+- uses: theo-code33/create-release-action@v0.2
   with:
     version: 'The version to release'
     token: ${{ secrets.GITHUB_TOKEN }}
