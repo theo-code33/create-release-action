@@ -15,6 +15,7 @@ ignorePatterns:
   - '**/dist/licence.txt'
   - '**/coverage/.*'
   - '*.json'
+  - '*.txt'
 
 parser: '@typescript-eslint/parser'
 
