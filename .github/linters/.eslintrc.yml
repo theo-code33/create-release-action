@@ -12,8 +12,10 @@ ignorePatterns:
   - '**/node_modules/.*'
   - '**/dist/.*'
   - '**/dist/*'
+  - '**/dist/licence.txt'
   - '**/coverage/.*'
   - '*.json'
+  - '*.txt'
 
 parser: '@typescript-eslint/parser'
 
